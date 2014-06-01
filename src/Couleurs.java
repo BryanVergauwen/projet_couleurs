@@ -1,24 +1,14 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import javax.swing.*;
 
-import javax.swing.JButton;
-import javax.swing.JColorChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-public class Fenetre extends JFrame {
+public class Couleurs extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private final int TAILLE = 10;
 	private JButton[] tabGris = new JButton[TAILLE];
@@ -32,7 +22,7 @@ public class Fenetre extends JFrame {
 	private JLabel r, v, b, gris, couleur;
 	private GridBagConstraints c1 = new GridBagConstraints();
 
-	public Fenetre() {
+	public Couleurs() {
 		super("Choose_Color");
 		initComposants();
 		placeComposants();
@@ -134,6 +124,135 @@ public class Fenetre extends JFrame {
 		}
 	}
 	private void setActionListeners() {
+		// key listener R
+		for (int i = 0; i < TAILLE; i++) {
+			tabR[i].addKeyListener(new KeyListener() {
+				int i;
+
+				public void keyTyped(KeyEvent e) {}
+				public void keyReleased(KeyEvent arg0) {}
+				public void keyPressed(KeyEvent e) {
+					if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+						int a = 0, b = 0, c = 0, gris;
+
+						try {
+							if (!tabR[i].getText().equals(""))
+								a = Integer.parseInt(tabR[i].getText());
+							if (!tabV[i].getText().equals(""))
+								b = Integer.parseInt(tabV[i].getText());
+							if (!tabB[i].getText().equals(""))
+								c = Integer.parseInt(tabB[i].getText());
+						}
+						catch (Exception ex) {
+							a = 255;
+							b = 255;
+							c = 255;
+						}
+						boolean test1 = (a == 0 && b == 0 && c == 0);
+						boolean test2 = (a < 0 || b < 0 || c < 0);
+						boolean test3 = (a > 255 || b > 255 || c > 255);
+						if (test1 || test2 || test3) {
+							a = 255;
+							b = 255;
+							c = 255;
+						}
+						tabCouleurs[i].setBackground(new Color(a, b, c));
+						gris = (int) (0.3 * a + 0.59 * b + 0.11 * c);
+						tabGris[i].setBackground(new Color(gris, gris, gris));
+					}
+				}
+				public KeyListener init(int i) {
+					this.i = i;
+					return this;
+				}
+			}.init(i));
+		}
+		// key listener V
+		for (int i = 0; i < TAILLE; i++) {
+			tabV[i].addKeyListener(new KeyListener() {
+				int i;
+
+				public void keyTyped(KeyEvent e) {}
+				public void keyReleased(KeyEvent arg0) {}
+				public void keyPressed(KeyEvent e) {
+					if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+						int a = 0, b = 0, c = 0, gris;
+
+						try {
+							if (!tabR[i].getText().equals(""))
+								a = Integer.parseInt(tabR[i].getText());
+							if (!tabV[i].getText().equals(""))
+								b = Integer.parseInt(tabV[i].getText());
+							if (!tabB[i].getText().equals(""))
+								c = Integer.parseInt(tabB[i].getText());
+						}
+						catch (Exception ex) {
+							a = 255;
+							b = 255;
+							c = 255;
+						}
+						boolean test1 = (a == 0 && b == 0 && c == 0);
+						boolean test2 = (a < 0 || b < 0 || c < 0);
+						boolean test3 = (a > 255 || b > 255 || c > 255);
+						if (test1 || test2 || test3) {
+							a = 255;
+							b = 255;
+							c = 255;
+						}
+						tabCouleurs[i].setBackground(new Color(a, b, c));
+						gris = (int) (0.3 * a + 0.59 * b + 0.11 * c);
+						tabGris[i].setBackground(new Color(gris, gris, gris));
+					}
+				}
+				public KeyListener init(int i) {
+					this.i = i;
+					return this;
+				}
+			}.init(i));
+		}
+		// key listener B
+		for (int i = 0; i < TAILLE; i++) {
+			tabB[i].addKeyListener(new KeyListener() {
+				int i;
+
+				public void keyTyped(KeyEvent e) {}
+				public void keyReleased(KeyEvent arg0) {}
+				public void keyPressed(KeyEvent e) {
+					if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+						int a = 0, b = 0, c = 0, gris;
+
+						try {
+							if (!tabR[i].getText().equals(""))
+								a = Integer.parseInt(tabR[i].getText());
+							if (!tabV[i].getText().equals(""))
+								b = Integer.parseInt(tabV[i].getText());
+							if (!tabB[i].getText().equals(""))
+								c = Integer.parseInt(tabB[i].getText());
+						}
+						catch (Exception ex) {
+							a = 255;
+							b = 255;
+							c = 255;
+						}
+						boolean test1 = (a == 0 && b == 0 && c == 0);
+						boolean test2 = (a < 0 || b < 0 || c < 0);
+						boolean test3 = (a > 255 || b > 255 || c > 255);
+						if (test1 || test2 || test3) {
+							a = 255;
+							b = 255;
+							c = 255;
+						}
+						tabCouleurs[i].setBackground(new Color(a, b, c));
+						gris = (int) (0.3 * a + 0.59 * b + 0.11 * c);
+						tabGris[i].setBackground(new Color(gris, gris, gris));
+					}
+				}
+				public KeyListener init(int i) {
+					this.i = i;
+					return this;
+				}
+			}.init(i));
+		}
 		// bouton clear
 		clear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -169,37 +288,24 @@ public class Fenetre extends JFrame {
 					String vi = tabV[i].getText();
 					String bi = tabB[i].getText();
 
-					if (!ri.equals("")) {
-						try {
+					try {
+						if (!ri.equals(""))
 							a = Integer.parseInt(ri);
-						}
-						catch (Exception e) {
-							a = 255;
-							b = 255;
-							c = 255;
-						}
-					}
-					if (!vi.equals("")) {
-						try {
+						if (!vi.equals(""))
 							b = Integer.parseInt(vi);
-						}
-						catch (Exception e) {
-							a = 255;
-							b = 255;
-							c = 255;
-						}
-					}
-					if (!bi.equals("")) {
-						try {
+						if (!bi.equals(""))
 							c = Integer.parseInt(bi);
-						}
-						catch (Exception e) {
-							a = 255;
-							b = 255;
-							c = 255;
-						}
 					}
-					if (ri.equals("") && vi.equals("") && bi.equals("")) {
+					catch (Exception e) {
+						a = 255;
+						b = 255;
+						c = 255;
+					}
+					// Cas ou aucune couleur n'est saisie
+					boolean test1 = (a == 0 && b == 0 && c == 0);
+					boolean test2 = (a < 0 || b < 0 || c < 0);
+					boolean test3 = (a > 255 || b > 255 || c > 255);
+					if (test1 || test2 || test3) {
 						a = 255;
 						b = 255;
 						c = 255;
@@ -252,8 +358,7 @@ public class Fenetre extends JFrame {
 		c1.gridx = 0;
 		c1.gridy = 1;
 		panel1.add(couleur, c1);
-		// "R"	
-		c1.gridx = 0;
+		// "R"-c1.gridx = 0;
 		c1.gridy = 2;
 		panel1.add(r, c1);
 		// "V"
@@ -344,6 +449,6 @@ public class Fenetre extends JFrame {
 		}
 	}
 	public static void main(String[] args) {
-		new Fenetre();
+		new Couleurs();
 	}
 }
